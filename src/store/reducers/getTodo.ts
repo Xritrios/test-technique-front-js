@@ -46,7 +46,6 @@ export const getTodoRequest = (id) => async (dispatch: AppDispatch) => {
   dispatch(getTodoRequestInit());
   try {
     const { data } = await axios.get("/api/todos/edit/" + id);
-    console.log(data);
     dispatch(getTodoSuccess(data));
   } catch (error: any) {
     dispatch(getTodoFailure(error.response.message));
