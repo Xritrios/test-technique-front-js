@@ -1,5 +1,6 @@
-import { Card, Typography } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Card, Typography, Tooltip, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
 import { TodoStatus } from "../types";
 import { removeTodoRequest } from "../store/reducers/removeTodo";
@@ -22,7 +23,7 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
   const dispatch: AppDispatch = useDispatch();
   const handleDelete = (id) => {
     dispatch(removeTodoRequest(id));
-  }
+  };
 
   return (
     <Card
@@ -30,10 +31,10 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
       style={{
         padding: "2rem",
         border: "2px solid lightgray",
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start'
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
       }}
     >
       <div>
@@ -47,7 +48,13 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
         </Typography>
         <p>{description}</p>
       </div>
-      <DeleteIcon onClick={() => handleDelete(id)} />
+      <div>
+        <Tooltip title="Delete">
+          <IconButton style={{ cursor: "pointer" }}>
+            <DeleteIcon onClick={() => handleDelete(id)} />
+          </IconButton>
+        </Tooltip>
+      </div>
     </Card>
   );
 };
