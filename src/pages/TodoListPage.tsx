@@ -41,6 +41,7 @@ export const TodoListPage: React.FC = () => {
             {todos.length > 0 && loaded ? (
               todos.map((todo) => (
                 <TodoComponent
+                  id={todo.id}
                   title={todo.title}
                   description={todo.description}
                   status={todo.status}
