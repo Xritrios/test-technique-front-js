@@ -65,8 +65,8 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton style={{ cursor: "pointer" }}>
-            <DeleteIcon onClick={() => handleDelete()} />
+          <IconButton style={{ cursor: "pointer" }} onClick={() => handleDelete()}>
+            <DeleteIcon />
           </IconButton>
         </Tooltip>
       </div>
