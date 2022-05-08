@@ -15,7 +15,7 @@ const initialState: AddTodoState = {
 };
 
 const addTodoSlice = createSlice({
-  name: "getTodoList",
+  name: "addTodo",
   initialState,
   reducers: {
     addTodoRequestInit(state) {
@@ -42,7 +42,7 @@ export const addTodoRequest = (todo: Todo) => async (dispatch: AppDispatch) => {
     dispatch(addTodoSuccess());
     dispatch(getTodoListRequest());
   } catch (error: any) {
-    dispatch(addTodoFailure(error.response.message));
+    dispatch(addTodoFailure(error.response.data.error));
   }
 };
 

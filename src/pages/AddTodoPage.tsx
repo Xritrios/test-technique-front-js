@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { addTodoRequest } from "../store/reducers/addTodo";
@@ -11,6 +11,8 @@ export const AddTodoPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const { loading, error } = useSelector((state: RootState) => state.addTodo);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
