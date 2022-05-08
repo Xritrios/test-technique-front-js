@@ -6,6 +6,7 @@ import { TodoStatus } from "../types";
 import { removeTodoRequest } from "../store/reducers/removeTodo";
 import { AppDispatch } from "../store";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 interface TodoComponentProps {
   id: string;
@@ -20,7 +21,13 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
   description,
   status,
 }) => {
+  const nav = useNavigate();
   const dispatch: AppDispatch = useDispatch();
+
+  const handleEdit = () => {
+    nav("/edit/" + id);
+  };
+
   const handleDelete = () => {
     dispatch(removeTodoRequest(id));
   };
@@ -49,6 +56,14 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
         <p>{description}</p>
       </div>
       <div>
+        <Tooltip title="Edit">
+          <IconButton
+            style={{ cursor: "pointer" }}
+            onClick={() => handleEdit()}
+          >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Delete">
           <IconButton style={{ cursor: "pointer" }}>
             <DeleteIcon onClick={() => handleDelete()} />
