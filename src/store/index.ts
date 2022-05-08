@@ -4,6 +4,7 @@ import { getTodoReducer } from "./reducers/getTodo";
 import { addTodoReducer } from "./reducers/addTodo";
 import { editTodoReducer } from "./reducers/editTodo";
 import { removeTodoReducer } from "./reducers/removeTodo";
+import { finishTodoReducer } from "./reducers/finishTodo";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     getTodo: getTodoReducer,
     addTodo: addTodoReducer,
     editTodo: editTodoReducer,
-    removeTodo: removeTodoReducer
+    removeTodo: removeTodoReducer,
+    finishTodo: finishTodoReducer,
   },
 });
 

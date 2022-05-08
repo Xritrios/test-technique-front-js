@@ -1,9 +1,11 @@
 import { Card, Typography, Tooltip, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 import { TodoStatus } from "../types";
 import { removeTodoRequest } from "../store/reducers/removeTodo";
+import { finishTodoRequest } from "../store/reducers/finishTodo";
 import { AppDispatch } from "../store";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +25,18 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
 }) => {
   const nav = useNavigate();
   const dispatch: AppDispatch = useDispatch();
+
+  const handleFinish = () => {
+    dispatch(
+      finishTodoRequest({
+        id,
+        title,
+        description,
+        status:
+          status === TodoStatus.DONE ? TodoStatus.PENDING : TodoStatus.DONE,
+      })
+    );
+  };
 
   const handleEdit = () => {
     nav("/edit/" + id);
@@ -56,6 +70,14 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
         <p>{description}</p>
       </div>
       <div>
+        <Tooltip title="Mark as finished">
+          <IconButton
+            style={status === TodoStatus.DONE ? { color: "green" } : {}}
+            onClick={() => handleFinish()}
+          >
+            <DoneIcon />
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Edit">
           <IconButton
             style={{ cursor: "pointer" }}
@@ -65,7 +87,10 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton style={{ cursor: "pointer" }} onClick={() => handleDelete()}>
+          <IconButton
+            style={{ cursor: "pointer" }}
+            onClick={() => handleDelete()}
+          >
             <DeleteIcon />
           </IconButton>
         </Tooltip>
