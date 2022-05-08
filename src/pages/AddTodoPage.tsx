@@ -61,6 +61,7 @@ export const AddTodoPage: React.FC = () => {
             label="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            inputProps={{ minLength: 8 }}
           />
 
           <TextField
