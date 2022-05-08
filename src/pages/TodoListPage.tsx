@@ -39,15 +39,25 @@ export const TodoListPage: React.FC = () => {
         ) : (
           <div style={{ width: "100%" }}>
             {todos.length > 0 && loaded ? (
-              todos.map((todo) => (
-                <TodoComponent
-                  key={todo.id}
-                  id={todo.id}
-                  title={todo.title}
-                  description={todo.description}
-                  status={todo.status}
-                />
-              ))
+              [...todos]
+                .sort((a, b) =>
+                  a.status < b.status
+                    ? 1
+                    : a.status === b.status
+                    ? a.title < b.title
+                      ? -1
+                      : 1
+                    : -1
+                )
+                .map((todo) => (
+                  <TodoComponent
+                    key={todo.id}
+                    id={todo.id}
+                    title={todo.title}
+                    description={todo.description}
+                    status={todo.status}
+                  />
+                ))
             ) : (
               <Typography>There is no todos to show.</Typography>
             )}
