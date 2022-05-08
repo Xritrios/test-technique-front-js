@@ -21,7 +21,7 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
   status,
 }) => {
   const dispatch: AppDispatch = useDispatch();
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     dispatch(removeTodoRequest(id));
   };
 
@@ -51,7 +51,7 @@ export const TodoComponent: React.FC<TodoComponentProps> = ({
       <div>
         <Tooltip title="Delete">
           <IconButton style={{ cursor: "pointer" }}>
-            <DeleteIcon onClick={() => handleDelete(id)} />
+            <DeleteIcon onClick={() => handleDelete()} />
           </IconButton>
         </Tooltip>
       </div>
