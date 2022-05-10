@@ -38,7 +38,7 @@ const { removeTodoRequestInit, removeTodoSuccess, removeTodoFailure } =
 export const removeTodoRequest = (id: string) => async (dispatch: AppDispatch) => {
   dispatch(removeTodoRequestInit());
   try {
-    await axios.post("/api/todos/" + id);
+    await axios.delete("/api/todos/" + id);
     dispatch(removeTodoSuccess());
     dispatch(getTodoListRequest());
   } catch (error: any) {

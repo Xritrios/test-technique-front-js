@@ -39,7 +39,7 @@ export const finishTodoRequest =
   (todo: Todo) => async (dispatch: AppDispatch) => {
     dispatch(finishTodoRequestInit());
     try {
-      await axios.post("/api/todos/finish/" + todo.id, { todo });
+      await axios.put("/api/todos/finish/" + todo.id, { todo });
       dispatch(finishTodoSuccess());
       dispatch(getTodoListRequest());
     } catch (error: any) {

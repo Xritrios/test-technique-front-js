@@ -39,7 +39,7 @@ export const editTodoRequest =
   (todo: Todo) => async (dispatch: AppDispatch) => {
     dispatch(editTodoRequestInit());
     try {
-      await axios.post("/api/todos/edit/" + todo.id, { todo });
+      await axios.put("/api/todos/edit/" + todo.id, { todo });
       dispatch(editTodoSuccess());
       dispatch(getTodoListRequest());
     } catch (error: any) {
