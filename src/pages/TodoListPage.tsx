@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { AppDispatch, RootState } from "../store";
 import { TodoComponent } from "../components";
 import { getTodoListRequest } from "../store/reducers/getTodoList";
+import { compareTodos } from "../utils/utils";
 
 export const TodoListPage: React.FC = () => {
   const nav = useNavigate();
@@ -40,15 +41,7 @@ export const TodoListPage: React.FC = () => {
           <div style={{ width: "100%" }}>
             {todos.length > 0 && loaded ? (
               [...todos]
-                .sort((a, b) =>
-                  a.status < b.status
-                    ? 1
-                    : a.status === b.status
-                    ? a.title < b.title
-                      ? -1
-                      : 1
-                    : -1
-                )
+                .sort((todo1, todo2) => compareTodos(todo1, todo2))
                 .map((todo) => (
                   <TodoComponent
                     key={todo.id}
